@@ -13,7 +13,7 @@
 ## 2. Формат поля
 - `weed`: `numpy.ndarray`, форма `(H, W)`, тип `float`, значения от 0 до 1 (уровень засорения).
 - `obstacles`: `numpy.ndarray`, форма `(H, W)`, тип `bool`, `True` означает, что клетка непроходима.
-- Объект `Field` из `sim/field.py` хранит `weed`, `obstacles`, `H`, `W`.
+- Объект `Field` из `simulator/field.py` хранит `weed`, `obstacles`, `H`, `W`.
 - Поле по умолчанию 30×30, но код не должен зависеть от размера.
 
 ## 3. Параметры робота (файл `config.py`)
@@ -29,7 +29,7 @@
 | `predict_weed_map(field, history)` | `ml/forecast.py` | B | поле и история засорения | `np.ndarray (H, W)`, значения 0-1 |
 | `plan(weed_map, field, config)` | `planning/*.py` | A | карта засорения, поле, параметры | `list[(row, col)]`: какие клетки обработать |
 | `route(field, targets, start)` | `routing/*.py` | A | поле, цели, старт | `list[(row, col)]`: полный путь по клеткам |
-| `evaluate(field, path, targets)` | `sim/evaluate.py` | B | поле, путь, цели | `dict` с метриками |
+| `evaluate(field, path, targets)` | `simulator/evaluate.py` | B | поле, путь, цели | `dict` с метриками |
 
 Правила:
 - Функции не меняют переданное поле и возвращают новые объекты.
@@ -46,7 +46,7 @@
 ## 6. Формат данных для ML
 CSV-файл в `data/`, одна строка на клетку в один момент времени:
 
-`sim_id, step, row, col, weed_now, neighbors_mean, is_obstacle, weed_next`
+`simulator_id, step, row, col, weed_now, neighbors_mean, is_obstacle, weed_next`
 
 `weed_next` это целевая переменная: будет ли клетка засорена (выше порога) на следующем шаге.
 
