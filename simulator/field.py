@@ -54,3 +54,6 @@ def neighbors(field, r, c):
         if field.is_free(nr, nc):
             result.append((nr, nc))
     return result
+
+
+
